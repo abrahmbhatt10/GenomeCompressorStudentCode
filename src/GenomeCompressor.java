@@ -24,10 +24,27 @@ public class GenomeCompressor {
      * { A, C, T, G } from standard input; compresses and writes the results to standard output.
      */
     public static void compress() {
-
         // TODO: complete the compress() method
+        /*
+            Below code taken from Mr. Blick's slides:
+         */
+        String TARGET = "A";
+        int LEN = TARGET.length();
+        int BITS_PER_CHAR = 7;
 
+        String s = BinaryStdIn.readString();
+        int n = s.length();
 
+        for (int i = 0; i < n; i++) {
+            if (i + LEN <= n &&
+                    s.substring(i,i+LEN).equals(TARGET)){
+                BinaryStdOut.write(BlickCompressor.ESC, 7);
+                i += LEN - 1;
+            }
+            else {
+                BinaryStdOut.write(s.charAt(i), 7);
+            }
+        }
         BinaryStdOut.close();
     }
 
@@ -35,7 +52,6 @@ public class GenomeCompressor {
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
     public static void expand() {
-
         // TODO: complete the expand() method
 
         BinaryStdOut.close();
