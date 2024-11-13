@@ -33,7 +33,6 @@ public class GenomeCompressor {
         char TARGETC = 'C';
         int BITS_PER_CHAR = 2;
         char s;
-        int n;
         while(!BinaryStdIn.isEmpty()) {
             s = BinaryStdIn.readChar();
             if (s == TARGETA) {
