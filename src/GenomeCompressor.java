@@ -38,6 +38,7 @@ public class GenomeCompressor {
         int n;
         while(true){
             s = BinaryStdIn.readString();
+            System.out.println(s);
             n = s.length();
             if(n <= 0){
                 break;
