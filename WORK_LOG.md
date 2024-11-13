@@ -1,9 +1,9 @@
-Name: YOUR NAME HERE
+Name: Agastya Brahmbhatt
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date        |     Time      |                                                                                                                                                                                               Update |
+|:------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| November 12 | 11:25 - 11:55 |                                                             I brainstormed a bit. I was trying to find out different strategies. In the end, I decided to convert the 4 characters to 2 binary bits. |
+| November 12 |  4:30 - 5:00  | I used Mr. Blick's code from the slides as a template. I decided to assign A as 00, T as 01, G as 10, and C as 11. It was giving me an error for not being able to recognize the symbol BinaryStdIn. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
