@@ -24,7 +24,6 @@ public class GenomeCompressor {
      * { A, C, T, G } from standard input; compresses and writes the results to standard output.
      */
     public static void compress() {
-        // TODO: complete the compress() method
         /*
             Below code taken from Mr. Blick's slides:
          */
@@ -36,24 +35,25 @@ public class GenomeCompressor {
         char s;
         int n;
         while(!BinaryStdIn.isEmpty()) {
-            s = BinaryStdIn.readChar(16);
+            s = BinaryStdIn.readChar();
             if (s == TARGETA) {
-                BinaryStdOut.writeBit(false);
-                BinaryStdOut.writeBit(false);
+                BinaryStdOut.write(false);
+                BinaryStdOut.write(false);
             }
             if (s == TARGETT) {
-                BinaryStdOut.writeBit(false);
-                BinaryStdOut.writeBit(true);
+                BinaryStdOut.write(false);
+                BinaryStdOut.write(true);
             }
             if (s == TARGETG) {
-                BinaryStdOut.writeBit(true);
-                BinaryStdOut.writeBit(false);
+                BinaryStdOut.write(true);
+                BinaryStdOut.write(false);
             }
             if (s == TARGETC) {
-                BinaryStdOut.writeBit(true);
-                BinaryStdOut.writeBit(true);
+                BinaryStdOut.write(true);
+                BinaryStdOut.write(true);
             }
         }
+        BinaryStdOut.flush();
         BinaryStdOut.close();
     }
 
@@ -61,16 +61,15 @@ public class GenomeCompressor {
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
     public static void expand() {
-        // TODO: complete the expand() method
         /*
             Below code taken from Mr. Blick's slides:
          */
         boolean firstBit;
         boolean secondBit;
         while (!BinaryStdIn.isEmpty()){
-            secondBit = BinaryStdIn.readBoolean();
+            firstBit = BinaryStdIn.readBoolean();
             if(!BinaryStdIn.isEmpty()){
-                firstBit = BinaryStdIn.readBoolean();
+                secondBit = BinaryStdIn.readBoolean();
             }
             else{
                 break;

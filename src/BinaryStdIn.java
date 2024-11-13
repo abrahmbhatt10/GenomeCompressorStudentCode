@@ -43,7 +43,7 @@ public final class BinaryStdIn {
     private static boolean isInitialized;   // has BinaryStdIn been called for first time?
 
     // don't instantiate
-    private BinaryStdIn() { }
+    private BinaryStdIn() { isInitialized = false;}
 
     // fill buffer
     private static void initialize() {
