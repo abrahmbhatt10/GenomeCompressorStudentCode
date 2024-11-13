@@ -78,9 +78,14 @@ public class GenomeCompressor {
          */
         boolean firstBit;
         boolean secondBit;
-        while (!BinaryStdIn.isEmpty()) {
+        while (!BinaryStdIn.isEmpty()){
             firstBit = BinaryStdIn.readBoolean();
-            secondBit = BinaryStdIn.readBoolean();
+            if(!BinaryStdIn.isEmpty()){
+                secondBit = BinaryStdIn.readBoolean();
+            }
+            else{
+                break;
+            }
             if((firstBit == false) && (secondBit == false)){
                 BinaryStdOut.write('A');
             }
