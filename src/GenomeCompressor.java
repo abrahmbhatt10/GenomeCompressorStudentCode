@@ -31,27 +31,35 @@ public class GenomeCompressor {
         char TARGETT = 'T';
         char TARGETG = 'G';
         char TARGETC = 'C';
-        int BITS_PER_CHAR = 2;
+        int BITS_PER_CHAR = 3;
         char s;
         while(!BinaryStdIn.isEmpty()) {
             s = BinaryStdIn.readChar();
             if (s == TARGETA) {
                 BinaryStdOut.write(false);
                 BinaryStdOut.write(false);
+                BinaryStdOut.write(false);
             }
             if (s == TARGETT) {
+                BinaryStdOut.write(false);
                 BinaryStdOut.write(false);
                 BinaryStdOut.write(true);
             }
             if (s == TARGETG) {
+                BinaryStdOut.write(false);
                 BinaryStdOut.write(true);
                 BinaryStdOut.write(false);
             }
             if (s == TARGETC) {
+                BinaryStdOut.write(false);
                 BinaryStdOut.write(true);
                 BinaryStdOut.write(true);
             }
         }
+        /* write end of file indicator*/
+        BinaryStdOut.write(true);
+        BinaryStdOut.write(true);
+        BinaryStdOut.write(true);
         BinaryStdOut.flush();
         BinaryStdOut.close();
     }
@@ -65,6 +73,7 @@ public class GenomeCompressor {
          */
         boolean firstBit;
         boolean secondBit;
+        boolean thirdBit;
         while (!BinaryStdIn.isEmpty()){
             firstBit = BinaryStdIn.readBoolean();
             if(!BinaryStdIn.isEmpty()){
@@ -73,17 +82,26 @@ public class GenomeCompressor {
             else{
                 break;
             }
-            if((firstBit == false) && (secondBit == false)){
+            if(!BinaryStdIn.isEmpty()){
+                thirdBit = BinaryStdIn.readBoolean();
+            }
+            else{
+                break;
+            }
+            if((firstBit == false) && (secondBit == false) && (thirdBit == false)){
                 BinaryStdOut.write('A');
             }
-            if((firstBit == false) && (secondBit == true)){
+            if((firstBit == false) && (secondBit == false) && (thirdBit == true)){
                 BinaryStdOut.write('T');
             }
-            if((firstBit == true) && (secondBit == false)){
+            if((firstBit == false) && (secondBit == true) && (thirdBit == false)){
                 BinaryStdOut.write('G');
             }
-            if((firstBit == true) && (secondBit == true)){
+            if((firstBit == false) && (secondBit == true) && (thirdBit == true)){
                 BinaryStdOut.write('C');
+            }
+            if((firstBit == true) && (secondBit == true) && (thirdBit == true)){
+                break;
             }
         }
         BinaryStdOut.close();
