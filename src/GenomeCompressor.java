@@ -37,7 +37,6 @@ public class GenomeCompressor {
         int n;
         while(!BinaryStdIn.isEmpty()) {
             s = BinaryStdIn.readChar(16);
-            System.out.println(s);
             if (s == TARGETA) {
                 BinaryStdOut.writeBit(false);
                 BinaryStdOut.writeBit(false);
@@ -69,9 +68,9 @@ public class GenomeCompressor {
         boolean firstBit;
         boolean secondBit;
         while (!BinaryStdIn.isEmpty()){
-            firstBit = BinaryStdIn.readBoolean();
+            secondBit = BinaryStdIn.readBoolean();
             if(!BinaryStdIn.isEmpty()){
-                secondBit = BinaryStdIn.readBoolean();
+                firstBit = BinaryStdIn.readBoolean();
             }
             else{
                 break;
