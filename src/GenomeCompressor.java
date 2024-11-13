@@ -28,42 +28,31 @@ public class GenomeCompressor {
         /*
             Below code taken from Mr. Blick's slides:
          */
-        String TARGETA = "A";
-        String TARGETT = "T";
-        String TARGETG = "G";
-        String TARGETC = "C";
-        int LEN = TARGETA.length();
+        char TARGETA = 'A';
+        char TARGETT = 'T';
+        char TARGETG = 'G';
+        char TARGETC = 'C';
         int BITS_PER_CHAR = 2;
-        String s;
+        char s;
         int n;
-        while(true){
-            s = BinaryStdIn.readString();
+        while(!BinaryStdIn.isEmpty()) {
+            s = BinaryStdIn.readChar(16);
             System.out.println(s);
-            n = s.length();
-            if(n <= 0){
-                break;
+            if (s == TARGETA) {
+                BinaryStdOut.writeBit(false);
+                BinaryStdOut.writeBit(false);
             }
-            for(int i = 0; i < n; i++) {
-                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETA)){
-                    BinaryStdOut.writeBit(false);
-                    BinaryStdOut.writeBit(false);
-                    i += LEN - 1;
-                }
-                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETT)){
-                    BinaryStdOut.writeBit(false);
-                    BinaryStdOut.writeBit(true);
-                    i += LEN - 1;
-                }
-                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETG)){
-                    BinaryStdOut.writeBit(true);
-                    BinaryStdOut.writeBit(false);
-                    i += LEN - 1;
-                }
-                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETC)){
-                    BinaryStdOut.writeBit(true);
-                    BinaryStdOut.writeBit(true);
-                    i += LEN - 1;
-                }
+            if (s == TARGETT) {
+                BinaryStdOut.writeBit(false);
+                BinaryStdOut.writeBit(true);
+            }
+            if (s == TARGETG) {
+                BinaryStdOut.writeBit(true);
+                BinaryStdOut.writeBit(false);
+            }
+            if (s == TARGETC) {
+                BinaryStdOut.writeBit(true);
+                BinaryStdOut.writeBit(true);
             }
         }
         BinaryStdOut.close();
