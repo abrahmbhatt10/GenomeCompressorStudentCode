@@ -16,7 +16,7 @@
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  *  @author Zach Blick
- */
+ **/
 public class GenomeCompressor {
 
     /**
