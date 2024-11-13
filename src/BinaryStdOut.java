@@ -49,7 +49,7 @@ public final class BinaryStdOut {
     /**
      * Writes the specified bit to standard output.
      */
-    private static void writeBit(boolean bit) {
+    static void writeBit(boolean bit) {
         if (!isInitialized) initialize();
 
         // add bit to buffer

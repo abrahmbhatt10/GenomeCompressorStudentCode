@@ -28,21 +28,41 @@ public class GenomeCompressor {
         /*
             Below code taken from Mr. Blick's slides:
          */
-        String TARGET = "A";
-        int LEN = TARGET.length();
-        int BITS_PER_CHAR = 7;
-
-        String s = BinaryStdIn.readString();
-        int n = s.length();
-
-        for (int i = 0; i < n; i++) {
-            if (i + LEN <= n &&
-                    s.substring(i,i+LEN).equals(TARGET)){
-                BinaryStdOut.write(BlickCompressor.ESC, 7);
-                i += LEN - 1;
+        String TARGETA = "A";
+        String TARGETT = "T";
+        String TARGETG = "G";
+        String TARGETC = "C";
+        int LEN = TARGETA.length();
+        int BITS_PER_CHAR = 2;
+        String s;
+        int n;
+        while(true){
+            s = BinaryStdIn.readString();
+            n = s.length();
+            if(n <= 0){
+                break;
             }
-            else {
-                BinaryStdOut.write(s.charAt(i), 7);
+            for(int i = 0; i < n; i++) {
+                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETA)){
+                    BinaryStdOut.writeBit(false);
+                    BinaryStdOut.writeBit(false);
+                    i += LEN - 1;
+                }
+                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETT)){
+                    BinaryStdOut.writeBit(false);
+                    BinaryStdOut.writeBit(true);
+                    i += LEN - 1;
+                }
+                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETG)){
+                    BinaryStdOut.writeBit(true);
+                    BinaryStdOut.writeBit(false);
+                    i += LEN - 1;
+                }
+                if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGETC)){
+                    BinaryStdOut.writeBit(true);
+                    BinaryStdOut.writeBit(true);
+                    i += LEN - 1;
+                }
             }
         }
         BinaryStdOut.close();
@@ -53,7 +73,27 @@ public class GenomeCompressor {
      */
     public static void expand() {
         // TODO: complete the expand() method
-
+        /*
+            Below code taken from Mr. Blick's slides:
+         */
+        boolean firstBit;
+        boolean secondBit;
+        while (!BinaryStdIn.isEmpty()) {
+            firstBit = BinaryStdIn.readBoolean();
+            secondBit = BinaryStdIn.readBoolean();
+            if((firstBit == false) && (secondBit == false)){
+                BinaryStdOut.write('A');
+            }
+            if((firstBit == false) && (secondBit == true)){
+                BinaryStdOut.write('T');
+            }
+            if((firstBit == true) && (secondBit == false)){
+                BinaryStdOut.write('G');
+            }
+            if((firstBit == true) && (secondBit == true)){
+                BinaryStdOut.write('C');
+            }
+        }
         BinaryStdOut.close();
     }
 
