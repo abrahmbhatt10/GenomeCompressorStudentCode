@@ -1,9 +1,11 @@
 Name: Agastya Brahmbhatt
 
-| Date        |     Time      |                                                                                                                                                                                               Update |
-|:------------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| November 12 | 11:25 - 11:55 |                                                             I brainstormed a bit. I was trying to find out different strategies. In the end, I decided to convert the 4 characters to 2 binary bits. |
-| November 12 |  4:30 - 5:00  | I used Mr. Blick's code from the slides as a template. I decided to assign A as 00, T as 01, G as 10, and C as 11. It was giving me an error for not being able to recognize the symbol BinaryStdIn. |
+| Date        |     Time      |                                                                                                                                                                                                                                                                                      Update |
+|:------------|:-------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| November 12 | 11:25 - 11:55 |                                                                                                                                                    I brainstormed a bit. I was trying to find out different strategies. In the end, I decided to convert the 4 characters to 2 binary bits. |
+| November 12 |  4:30 - 5:00  |                                                                                        I used Mr. Blick's code from the slides as a template. I decided to assign A as 00, T as 01, G as 10, and C as 11. It was giving me an error for not being able to recognize the symbol BinaryStdIn. |
+| November 14 |  9:25 - 9:55  | I decided to include file headers in the binary bit data. The file header will be converted to binary, keeping track of the length of the file. Thus, the program knows to only look at the first n bits, and to not look at the padding based on the information given by the file header. |
+| November 14 |               |                                                                                                                                                                                                                                                                                             |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
