@@ -88,6 +88,11 @@ public class GenomeCompressor {
             else {
                 break;
             }
+            /*
+                Converting the first and second bits into int index
+                Inspired by the code in BinaryStdOut with regards to
+                Buffer and bits.
+             */
             index = 0;
             if (firstBit) {
                 index |= 1;
