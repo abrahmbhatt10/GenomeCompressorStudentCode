@@ -75,7 +75,11 @@ public class GenomeCompressor {
         boolean firstBit;
         boolean secondBit;
         int index;
-
+        int header = 0;
+        int count = 0;
+        if(!BinaryStdIn.isEmpty()){
+            header = BinaryStdIn.readInt();
+        }
         while (!BinaryStdIn.isEmpty()) {
             firstBit = BinaryStdIn.readBoolean();
             if (!BinaryStdIn.isEmpty()) {
@@ -93,6 +97,10 @@ public class GenomeCompressor {
                 index |= 2;
             }
             BinaryStdOut.write(getChar(index));
+            count++;
+            if(count >= header) {
+                break;
+            }
         }
         BinaryStdOut.close();
     }
