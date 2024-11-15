@@ -18,6 +18,8 @@
  *  @author Zach Blick
  **/
 public class GenomeCompressor {
+    private static String TARGET = "ATGC";
+    private static int LEN = TARGET.length();
 
     /**
      * Reads a sequence of 8-bit extended ASCII characters over the alphabet
@@ -25,28 +27,38 @@ public class GenomeCompressor {
      */
     public static void compress() {
         /*
-            Below code taken from Mr. Blick's slides:
+            Below code inspired by Mr. Blick's slides and Sedgewick:
          */
-        String TARGET_A = "A";
-        String TARGET_T = "T";
-        String TARGET_G = "G";
-        String TARGET_C = "C";
-
+        String TARGET = "ATGC";
         int LEN = TARGET.length();
-        int BITS_PER_CHAR = 7;
+        int BITS_PER_CHAR = 2;
         String s = BinaryStdIn.readString();
         int n = s.length();
         BinaryStdOut.write(n);
+        int index;
         for (int i = 0; i < n; i++) {
-            if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGET)){
-                BinaryStdOut.write(ESC, 7);
-                i += LEN - 1;
-            }
-            else {
-                BinaryStdOut.write(s.charAt(i), 7);
+            index = getIndex(s.charAt(i));
+            if(index > -1){
+                BinaryStdOut.write(index, BITS_PER_CHAR);
             }
         }
         BinaryStdOut.close();
+    }
+
+    /*
+        Returns index of a char, which tells which type of letter it is.
+        For A, it will be 0.
+        For T, it will be 1.
+        For G, it will be 2.
+        For C, it will be 3.
+     */
+    public static int getIndex(char DNAChar){
+        for(int i = 0; i < LEN; i++){
+            if(DNAChar == TARGET.charAt(i)){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -54,7 +66,7 @@ public class GenomeCompressor {
      */
     public static void expand() {
         /*
-            Below code taken from Mr. Blick's slides:
+            Below code inspired by Mr. Blick's slides and Sedgewick:
          */
         while (!BinaryStdIn.isEmpty()) {
             char c = BinaryStdIn.readChar(7);
