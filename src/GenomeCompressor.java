@@ -61,24 +61,43 @@ public class GenomeCompressor {
         return -1;
     }
 
+    public static char getChar(int index){
+        if((index >= 0) && (index <= LEN)){
+            return TARGET.charAt(index);
+        }
+        return ' ';
+    }
+
     /**
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
-    public static void expand() {
-        /*
-            Below code inspired by Mr. Blick's slides and Sedgewick:
-         */
+    public static void expand(){
+        boolean firstBit;
+        boolean secondBit;
+        int index;
+
         while (!BinaryStdIn.isEmpty()) {
-            char c = BinaryStdIn.readChar(7);
-            if (c == ESC) {
-                BinaryStdOut.write(TARGET);
+            firstBit = BinaryStdIn.readBoolean();
+            if (!BinaryStdIn.isEmpty()) {
+                secondBit = BinaryStdIn.readBoolean();
             }
             else {
-                BinaryStdOut.write(c);
+                break;
             }
+            index = 0;
+            if (firstBit) {
+                index |= 1;
+            }
+            index <<= 1;
+            if(secondBit) {
+                index |= 2;
+            }
+            BinaryStdOut.write(getChar(index));
         }
         BinaryStdOut.close();
     }
+}
+
 
 
     /**
