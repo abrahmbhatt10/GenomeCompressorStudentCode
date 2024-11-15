@@ -27,7 +27,7 @@ public class GenomeCompressor {
      */
     public static void compress() {
         /*
-            Below code inspired by Mr. Blick's slides and Sedgewick:
+            Below code inspired by Mr. Blick's slides and Sedgewick & Wayne:
          */
         String TARGET = "ATGC";
         int LEN = TARGET.length();
@@ -46,6 +46,7 @@ public class GenomeCompressor {
     }
 
     /*
+        Inspired by DNA index code of Sedgewick & Wayne.
         Returns index of a char, which tells which type of letter it is.
         For A, it will be 0.
         For T, it will be 1.
