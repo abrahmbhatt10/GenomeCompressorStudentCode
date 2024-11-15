@@ -27,40 +27,25 @@ public class GenomeCompressor {
         /*
             Below code taken from Mr. Blick's slides:
          */
-        char TARGETA = 'A';
-        char TARGETT = 'T';
-        char TARGETG = 'G';
-        char TARGETC = 'C';
-        int BITS_PER_CHAR = 3;
-        char s;
-        while(!BinaryStdIn.isEmpty()) {
-            s = BinaryStdIn.readChar();
-            if (s == TARGETA) {
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(false);
+        String TARGET_A = "A";
+        String TARGET_T = "T";
+        String TARGET_G = "G";
+        String TARGET_C = "C";
+
+        int LEN = TARGET.length();
+        int BITS_PER_CHAR = 7;
+        String s = BinaryStdIn.readString();
+        int n = s.length();
+        BinaryStdOut.write(n);
+        for (int i = 0; i < n; i++) {
+            if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGET)){
+                BinaryStdOut.write(ESC, 7);
+                i += LEN - 1;
             }
-            if (s == TARGETT) {
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(true);
-            }
-            if (s == TARGETG) {
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(true);
-                BinaryStdOut.write(false);
-            }
-            if (s == TARGETC) {
-                BinaryStdOut.write(false);
-                BinaryStdOut.write(true);
-                BinaryStdOut.write(true);
+            else {
+                BinaryStdOut.write(s.charAt(i), 7);
             }
         }
-        /* write end of file indicator*/
-        BinaryStdOut.write(true);
-        BinaryStdOut.write(true);
-        BinaryStdOut.write(true);
-        BinaryStdOut.flush();
         BinaryStdOut.close();
     }
 
@@ -71,37 +56,13 @@ public class GenomeCompressor {
         /*
             Below code taken from Mr. Blick's slides:
          */
-        boolean firstBit;
-        boolean secondBit;
-        boolean thirdBit;
-        while (!BinaryStdIn.isEmpty()){
-            firstBit = BinaryStdIn.readBoolean();
-            if(!BinaryStdIn.isEmpty()){
-                secondBit = BinaryStdIn.readBoolean();
+        while (!BinaryStdIn.isEmpty()) {
+            char c = BinaryStdIn.readChar(7);
+            if (c == ESC) {
+                BinaryStdOut.write(TARGET);
             }
-            else{
-                break;
-            }
-            if(!BinaryStdIn.isEmpty()){
-                thirdBit = BinaryStdIn.readBoolean();
-            }
-            else{
-                break;
-            }
-            if((firstBit == false) && (secondBit == false) && (thirdBit == false)){
-                BinaryStdOut.write('A');
-            }
-            if((firstBit == false) && (secondBit == false) && (thirdBit == true)){
-                BinaryStdOut.write('T');
-            }
-            if((firstBit == false) && (secondBit == true) && (thirdBit == false)){
-                BinaryStdOut.write('G');
-            }
-            if((firstBit == false) && (secondBit == true) && (thirdBit == true)){
-                BinaryStdOut.write('C');
-            }
-            if((firstBit == true) && (secondBit == true) && (thirdBit == true)){
-                break;
+            else {
+                BinaryStdOut.write(c);
             }
         }
         BinaryStdOut.close();
