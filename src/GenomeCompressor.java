@@ -94,7 +94,7 @@ public class GenomeCompressor {
             }
             index <<= 1;
             if(secondBit) {
-                index |= 2;
+                index |= 1;
             }
             BinaryStdOut.write(getChar(index));
             count++;
@@ -111,7 +111,6 @@ public class GenomeCompressor {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-
         if      (args[0].equals("-")) compress();
         else if (args[0].equals("+")) expand();
         else throw new IllegalArgumentException("Illegal command line argument");
